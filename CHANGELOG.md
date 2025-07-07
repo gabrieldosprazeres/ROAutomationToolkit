@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.2.0] - 07/07/2025
+
+### Added
+
+- **Novo serviço de envio de teclas (`KeySenderService`)**:
+  - Implementação de envio de teclas via mensagens Windows (`PostMessage`)
+  - Suporte para WM_KEYDOWN/WM_KEYUP
+  - Sistema de eventos para logs e controle de estado
+  - Thread dedicada para envio assíncrono de teclas
+- **Mecanismo de seleção de tecla configurável**:
+  - Suporte para múltiplas teclas via `SetKey()`
+  - Validação de intervalo mínimo (100ms)
+- **Mecanismo de seleção de tecla configurável**:
+  - `LogMessage` para feedback em tempo real
+  - `SendingStateChanged` para controle de estado
+
+### Changed
+
+- **Refatoração do MainForm**:
+  - Adição de suporte completo ao `KeySenderService`
+  - Integração do serviço com seleção de janelas
+  - Aprimoramento de tratamento assíncrono
+- **Atualização da interface**:
+  - Novo layout com controles de envio de teclas
+- **Melhorias no serviço existente**:
+  - Adição de validação reforçada para handles de janela
+  - Otimização do sistema de threads
+
+### Fixed
+
+- Correção de possível race condition no loop de envio
+- Tratamento de exceções para caminho de ícone inválido
+- Prevenção de memory leak no carregamento de imagens
+- Sincronização de thread na atualização da UI
+
+### Removed
+
+- Redundância na inicialização de componentes
+- Código obsoleto de versões anteriores
+
 ## [1.1.0] - 07/07/2025
 
 ### Added
