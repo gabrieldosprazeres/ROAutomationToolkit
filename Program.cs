@@ -1,9 +1,10 @@
 using System;
 using System.Windows.Forms;
+using ROAutomationToolkit.Forms;
 
 namespace ROAutomationToolkit
 {
-    static class Program
+    internal static class Program
     {
         [STAThread]
         static void Main()

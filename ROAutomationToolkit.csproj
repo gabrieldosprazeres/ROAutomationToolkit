@@ -21,9 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="resources\icon.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="resources\**\*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>
