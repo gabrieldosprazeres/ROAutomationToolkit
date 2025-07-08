@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0] - 08/07/2025
+
+### Added
+
+- Sistema de abas para organização de funcionalidades
+- Aba "HotKey" para novos recursos futuros
+
 ## [1.3.0] - 07/07/2025
 
 ### Added

@@ -51,7 +51,7 @@ namespace ROAutomationToolkit.Forms
             PostLogMessage("3. Clique em 'Ativar' para começar");
             PostLogMessage("2. Configure a tecla e o intervalo");
             PostLogMessage("1. Selecione uma janela do jogo na lista");
-            PostLogMessage("Bem-vindo ao RO Automation Toolkit v1.3.0");
+            PostLogMessage("Bem-vindo ao RO Automation Toolkit v1.4.0");
         }
 
         private void MainFormClosing(object sender, FormClosingEventArgs e)

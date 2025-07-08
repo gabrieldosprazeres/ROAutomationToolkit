@@ -26,6 +26,9 @@ namespace ROAutomationToolkit.Forms
         private TextBox textBoxProfileName;
         private Button buttonSaveProfile;
         private Button buttonDeleteProfile;
+        private TabControl tabControlMain;
+        private TabPage tabPageAutoKey;
+        private TabPage tabPageHotKey;
 
         protected override void Dispose(bool disposing)
         {
@@ -54,6 +57,11 @@ namespace ROAutomationToolkit.Forms
             this.textBoxProfileName = new TextBox();
             this.buttonSaveProfile = new Button();
             this.buttonDeleteProfile = new Button();
+            this.tabControlMain = new TabControl();
+            this.tabPageAutoKey = new TabPage();
+            this.tabPageHotKey = new TabPage();
+            
+            this.tabControlMain.SuspendLayout();
             this.SuspendLayout();
 
             // ===========================================
@@ -63,10 +71,31 @@ namespace ROAutomationToolkit.Forms
             this._toolTip.SetToolTip(buttonDeleteProfile, "Excluir perfil selecionado");
             this._toolTip.SetToolTip(buttonRagexeWindowsRefresh, "Atualizar lista de ragexe.exe");
             // ===========================================
+            // TabControlMain Configuration
+            // ===========================================
+            this.tabControlMain.Controls.Add(this.tabPageAutoKey);
+            this.tabControlMain.Controls.Add(this.tabPageHotKey);
+            this.tabControlMain.Dock = DockStyle.None;
+            this.tabControlMain.Location = new Point(0, 0);
+            this.tabControlMain.Name = "tabControlMain";
+            this.tabControlMain.SelectedIndex = 0;
+            this.tabControlMain.Size = new Size(385, 330);
+            this.tabControlMain.TabIndex = 0;
+            // ===========================================
+            // Aba tabPageAutoKey
+            // ===========================================
+            this.tabPageAutoKey.Location = new Point(4, 25);
+            this.tabPageAutoKey.Name = "tabPageAutoKey";
+            this.tabPageAutoKey.Padding = new Padding(3);
+            this.tabPageAutoKey.Size = new Size(375, 325);
+            this.tabPageAutoKey.TabIndex = 0;
+            this.tabPageAutoKey.Text = "AutoKey";
+            this.tabPageAutoKey.UseVisualStyleBackColor = true;
+            // ===========================================
             // RagexeWindowSelector Label
             // ===========================================
             this.labelRagexeWindowSelector.AutoSize = true;
-            this.labelRagexeWindowSelector.Location = new Point(12, 13);
+            this.labelRagexeWindowSelector.Location = new Point(5, 15);
             this.labelRagexeWindowSelector.Name = "labelRagexeWindowSelector";
             this.labelRagexeWindowSelector.Size = new Size(209, 16);
             this.labelRagexeWindowSelector.TabIndex = 1;
@@ -77,14 +106,14 @@ namespace ROAutomationToolkit.Forms
             this.comboBoxRagexeWindows.DropDownHeight = 300;
             this.comboBoxRagexeWindows.FormattingEnabled = true;
             this.comboBoxRagexeWindows.IntegralHeight = false;
-            this.comboBoxRagexeWindows.Location = new Point(12, 32);
+            this.comboBoxRagexeWindows.Location = new Point(7, 32);
             this.comboBoxRagexeWindows.Name = "comboBoxRagexeWindows";
             this.comboBoxRagexeWindows.Size = new Size(317, 24);
             this.comboBoxRagexeWindows.TabIndex = 0;
             // ===========================================
             // RagexeWindowsRefresh Button
             // ===========================================
-            this.buttonRagexeWindowsRefresh.Location = new Point(331, 30);
+            this.buttonRagexeWindowsRefresh.Location = new Point(327, 30);
             this.buttonRagexeWindowsRefresh.Name = "buttonRagexeWindowsRefresh";
             this.buttonRagexeWindowsRefresh.Size = new Size(34, 28);
             this.buttonRagexeWindowsRefresh.TabIndex = 7;
@@ -100,7 +129,7 @@ namespace ROAutomationToolkit.Forms
             // labeltextBoxKeySelection
             // ===========================================
             this.labeltextBoxKeySelection.AutoSize = true;
-            this.labeltextBoxKeySelection.Location = new Point(12, 70);
+            this.labeltextBoxKeySelection.Location = new Point(5, 72);
             this.labeltextBoxKeySelection.Name = "labeltextBoxKeySelection";
             this.labeltextBoxKeySelection.Size = new Size(40, 16);
             this.labeltextBoxKeySelection.TabIndex = 2;
@@ -108,7 +137,7 @@ namespace ROAutomationToolkit.Forms
             // ===========================================
             // textBoxKeySelection
             // ===========================================
-            this.textBoxKeySelection.Location = new Point(12, 89);
+            this.textBoxKeySelection.Location = new Point(7, 89);
             this.textBoxKeySelection.Name = "textBoxKeySelection";
             this.textBoxKeySelection.ReadOnly = true;
             this.textBoxKeySelection.Size = new Size(91, 22);
@@ -119,7 +148,7 @@ namespace ROAutomationToolkit.Forms
             // labelInterval
             // ===========================================
             this.labelInterval.AutoSize = true;
-            this.labelInterval.Location = new Point(109, 70);
+            this.labelInterval.Location = new Point(104, 72);
             this.labelInterval.Name = "labelInterval";
             this.labelInterval.Size = new Size(119, 16);
             this.labelInterval.TabIndex = 4;
@@ -127,7 +156,7 @@ namespace ROAutomationToolkit.Forms
             // ===========================================
             // textBoxInterval
             // ===========================================
-            this.textBoxInterval.Location = new Point(111, 89);
+            this.textBoxInterval.Location = new Point(106, 89);
             this.textBoxInterval.Name = "textBoxInterval";
             this.textBoxInterval.Size = new Size(91, 22);
             this.textBoxInterval.TabIndex = 5;
@@ -137,9 +166,9 @@ namespace ROAutomationToolkit.Forms
             // buttonToggleKeySending Button
             // ===========================================
             this.buttonToggleKeySending.BackColor = Color.LightGreen;
-            this.buttonToggleKeySending.Location = new Point(210, 86);
+            this.buttonToggleKeySending.Location = new Point(205, 86);
             this.buttonToggleKeySending.Name = "buttonToggleKeySending";
-            this.buttonToggleKeySending.Size = new Size(156, 30);
+            this.buttonToggleKeySending.Size = new Size(157, 30);
             this.buttonToggleKeySending.TabIndex = 8;
             this.buttonToggleKeySending.Text = "Ativar";
             this.buttonToggleKeySending.UseVisualStyleBackColor = false;
@@ -148,7 +177,7 @@ namespace ROAutomationToolkit.Forms
             // labelProfiles
             // ===========================================
             this.labelProfiles.AutoSize = true;
-            this.labelProfiles.Location = new Point(12, 120);
+            this.labelProfiles.Location = new Point(5, 122);
             this.labelProfiles.Name = "labelProfiles";
             this.labelProfiles.Size = new Size(51, 16);
             this.labelProfiles.TabIndex = 13;
@@ -158,7 +187,7 @@ namespace ROAutomationToolkit.Forms
             // ===========================================
             this.comboBoxProfiles.DropDownStyle = ComboBoxStyle.DropDownList;
             this.comboBoxProfiles.FormattingEnabled = true;
-            this.comboBoxProfiles.Location = new Point(12, 139);
+            this.comboBoxProfiles.Location = new Point(7, 139);
             this.comboBoxProfiles.Name = "comboBoxProfiles";
             this.comboBoxProfiles.Size = new Size(172, 24);
             this.comboBoxProfiles.TabIndex = 12;
@@ -166,7 +195,7 @@ namespace ROAutomationToolkit.Forms
             // ===========================================
             // textBoxProfileName
             // ===========================================
-            this.textBoxProfileName.Location = new Point(190, 139);
+            this.textBoxProfileName.Location = new Point(185, 139);
             this.textBoxProfileName.Name = "textBoxProfileName";
             this.textBoxProfileName.Size = new Size(100, 22);
             this.textBoxProfileName.TabIndex = 14;
@@ -175,7 +204,7 @@ namespace ROAutomationToolkit.Forms
             // ===========================================
             // buttonSaveProfile
             // ===========================================
-            this.buttonSaveProfile.Location = new Point(296, 138);
+            this.buttonSaveProfile.Location = new Point(291, 138);
             this.buttonSaveProfile.Name = "buttonSaveProfile";
             this.buttonSaveProfile.Size = new Size(34, 28);
             this.buttonSaveProfile.TabIndex = 15;
@@ -189,7 +218,7 @@ namespace ROAutomationToolkit.Forms
             // ===========================================
             // buttonDeleteProfile
             // ===========================================
-            this.buttonDeleteProfile.Location = new Point(333, 138);
+            this.buttonDeleteProfile.Location = new Point(328, 138);
             this.buttonDeleteProfile.Name = "buttonDeleteProfile";
             this.buttonDeleteProfile.Size = new Size(34, 28);
             this.buttonDeleteProfile.TabIndex = 16;
@@ -204,7 +233,7 @@ namespace ROAutomationToolkit.Forms
             // labelListBoxLog
             // ===========================================
             this.labelListBoxLog.AutoSize = true;
-            this.labelListBoxLog.Location = new Point(12, 170);
+            this.labelListBoxLog.Location = new Point(5, 171);
             this.labelListBoxLog.Name = "labelListBoxLog";
             this.labelListBoxLog.Size = new Size(36, 16);
             this.labelListBoxLog.TabIndex = 11;
@@ -214,37 +243,49 @@ namespace ROAutomationToolkit.Forms
             // ===========================================
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.ItemHeight = 16;
-            this.listBoxLog.Location = new Point(12, 189);
+            this.listBoxLog.Location = new Point(7, 189);
             this.listBoxLog.Name = "listBoxLog";
             this.listBoxLog.Size = new Size(353, 106);
             this.listBoxLog.TabIndex = 10;
+            // ===========================================
+            // Aba tabPageHotKey
+            // ===========================================
+            this.tabPageHotKey.Location = new Point(4, 25);
+            this.tabPageHotKey.Name = "tabPageHotKey";
+            this.tabPageHotKey.Padding = new Padding(3);
+            this.tabPageHotKey.Size = new Size(375, 325);
+            this.tabPageHotKey.TabIndex = 1;
+            this.tabPageHotKey.Text = "HotKey";
+            this.tabPageHotKey.UseVisualStyleBackColor = true;
             // ===========================================
             // MainForm
             // ===========================================
             this.AutoScaleDimensions = new SizeF(8F, 16F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(375, 300);
-            this.Controls.Add(this.labelRagexeWindowSelector);
-            this.Controls.Add(this.comboBoxRagexeWindows);
-            this.Controls.Add(this.buttonRagexeWindowsRefresh);
-            this.Controls.Add(this.labelListBoxLog);
-            this.Controls.Add(this.listBoxLog);
-            this.Controls.Add(this.textBoxKeySelection);
-            this.Controls.Add(this.buttonToggleKeySending);
-            this.Controls.Add(this.textBoxInterval);
-            this.Controls.Add(this.labelInterval);
-            this.Controls.Add(this.labeltextBoxKeySelection);
-            this.Controls.Add(this.buttonDeleteProfile);
-            this.Controls.Add(this.buttonSaveProfile);
-            this.Controls.Add(this.textBoxProfileName);
-            this.Controls.Add(this.labelProfiles);
-            this.Controls.Add(this.comboBoxProfiles);
+            this.tabPageAutoKey.Controls.Add(this.labelRagexeWindowSelector);
+            this.tabPageAutoKey.Controls.Add(this.comboBoxRagexeWindows);
+            this.tabPageAutoKey.Controls.Add(this.buttonRagexeWindowsRefresh);
+            this.tabPageAutoKey.Controls.Add(this.labeltextBoxKeySelection);
+            this.tabPageAutoKey.Controls.Add(this.labelInterval);
+            this.tabPageAutoKey.Controls.Add(this.textBoxInterval);
+            this.tabPageAutoKey.Controls.Add(this.buttonToggleKeySending);
+            this.tabPageAutoKey.Controls.Add(this.textBoxKeySelection);
+            this.tabPageAutoKey.Controls.Add(this.listBoxLog);
+            this.tabPageAutoKey.Controls.Add(this.labelListBoxLog);
+            this.tabPageAutoKey.Controls.Add(this.comboBoxProfiles);
+            this.tabPageAutoKey.Controls.Add(this.labelProfiles);
+            this.tabPageAutoKey.Controls.Add(this.textBoxProfileName);
+            this.tabPageAutoKey.Controls.Add(this.buttonSaveProfile);
+            this.tabPageAutoKey.Controls.Add(this.buttonDeleteProfile);
+            this.Controls.Add(this.tabControlMain);
+            this.ClientSize = new Size(375, 325);
             this.Font = new Font("Segoe UI", 9F);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "RO Automation Toolkit v1.3.0";
+            this.Text = "RO Automation Toolkit v1.4.0";
+            this.tabControlMain.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
         }
