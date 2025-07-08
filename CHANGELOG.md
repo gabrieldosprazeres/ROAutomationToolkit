@@ -1,8 +1,79 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## [1.3.0] - 07/07/2025
 
-# [1.2.0] - 07/07/2025
+### Added
+
+- **Sistema completo de gerenciamento de perfis**:
+  - Novo serviço `ProfileService` com operações CRUD
+  - Armazenamento persistente em arquivo JSON
+  - Suporte para múltiplos perfis com nome, tecla e intervalo
+  - Validação robusta de entradas para perfis
+  - Mecanismo de reparo automático para arquivos de perfil corrompidos
+- **Novos componentes de UI para perfis**:
+  - ComboBox para seleção rápida de perfis salvos
+  - Botões com ícones para salvar/excluir perfis
+  - Tooltips informativos para todos os controles
+  - Placeholders em campos de texto
+- **Sistema avançado de sincronização de threads**:
+  - Padrão `SynchronizationContext` para operações thread-safe
+  - Método `SafeUIUpdate` para atualizações seguras da UI
+- **Tratamento robusto de exceções**:
+  - Exceções personalizadas (`ProfileServiceException`)
+  - Recuperação de arquivos JSON mal formados
+  - Fallbacks para cenários de erro críticos
+- **Novo padrão arquitetural**:
+  - Injeção de dependência via construtor
+  - Interface `IProfileService` para desacoplamento
+  - Separação clara entre UI, serviços e modelos
+
+### Changed
+
+- **Refatoração completa do MainForm**:
+  - Separação de preocupações com serviços especializados
+  - Migração da lógica de perfis para `ProfileService`
+  - Organização por regiões funcionais
+- **Melhorias no `KeySenderService`**:
+  - Propriedade `IsSending` pública (substitui campo público)
+  - Controle refinado do ciclo de vida de threads
+- **Otimizações de performance**:
+  - Carregamento assíncrono de janelas com feedback visual
+  - Atualizações seletivas da UI
+- **Aprimoramentos de UX**:
+  - Mensagens de log mais descritivas
+  - Confirmação ao fechar durante operação ativa
+  - Reset automático ao selecionar "Novo Perfil"
+- **Serialização JSON avançada**:
+  - Conversor personalizado para compatibilidade
+  - Política de nomenclatura camelCase
+  - Serialização indentada para legibilidade
+
+### Fixed
+
+- **Correções de thread-safety**:
+  - Acesso concorrente ao arquivo de perfis
+  - Atualizações de UI a partir de threads background
+- **Proteção contra corrupção de dados**:
+  - Lock exclusivo para operações de arquivo
+  - Verificação de arquivos vazios/mal formados
+  - Backup automático durante reparo
+- **Tratamento de edge cases**:
+  - Processos com nomes inacessíveis
+  - Janelas sem título ou PID inválido
+  - Exceções durante carregamento de ícones
+- **Usabilidade**:
+  - Validação reforçada de intervalo mínimo (100ms)
+  - Feedback visual durante operações longas
+  - Prevenção de duplo clique em botões
+
+### Removed
+
+- Lógica de serialização/deserialização do MainForm
+- Métodos estáticos de acesso a arquivos
+- Referências diretas a implementações concretas
+- Código redundante de validação de inputs
+
+## [1.2.0] - 07/07/2025
 
 ### Added
 

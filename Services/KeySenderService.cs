@@ -20,7 +20,7 @@ namespace ROAutomationToolkit.Services
         private IntPtr targetWindowHandle = IntPtr.Zero;
         private int keyCode = (int)Keys.F1;
         private int interval = 2000;
-        public bool isSending = false;
+        public bool IsSending { get; private set; } = false;
         private Thread senderThread;
 
         public void StartSending(WindowInfo selectedWindow, int interval, string keyText)
@@ -41,7 +41,7 @@ namespace ROAutomationToolkit.Services
             this.interval = interval;
 
             LogMessage?.Invoke($"Iniciado: Tecla {keyText} a cada {interval}ms");
-            isSending = true;
+            IsSending = true;
             SendingStateChanged?.Invoke(true);
             
             senderThread = new Thread(SendKeysLoop)
@@ -53,23 +53,23 @@ namespace ROAutomationToolkit.Services
 
         private void SendKeysLoop()
         {
-            while (isSending)
+            while (IsSending)
             {
                 DateTime sendTime = DateTime.Now;
                 PostMessage(targetWindowHandle, WM_KEYDOWN, keyCode, 0);
                 Thread.Sleep(50);
                 PostMessage(targetWindowHandle, WM_KEYUP, keyCode, 0);
 
-                LogMessage?.Invoke($"{sendTime:HH:mm:ss} - Tecla enviada");
+                LogMessage?.Invoke("Tecla enviada");
                 Thread.Sleep(interval);
             }
         }
 
         public void StopSending()
         {
-            if (isSending)
+            if (IsSending)
             {
-                isSending = false;
+                IsSending = false;
                 LogMessage?.Invoke("Envio interrompido");
                 SendingStateChanged?.Invoke(false);
             }
@@ -78,6 +78,11 @@ namespace ROAutomationToolkit.Services
         public void SetKey(int keyValue)
         {
             keyCode = keyValue;
+        }
+
+        public int GetCurrentKeyCode()
+        {
+            return keyCode;
         }
     }
 }

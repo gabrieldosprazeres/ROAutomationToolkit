@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using ROAutomationToolkit.Forms;
+using ROAutomationToolkit.Services;
 
 namespace ROAutomationToolkit
 {
@@ -12,7 +13,11 @@ namespace ROAutomationToolkit
             Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            var keySender = new KeySenderService();
+            var profileService = new ProfileService();
+
+            Application.Run(new MainForm(keySender, profileService));
         }
     }
 }

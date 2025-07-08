@@ -10,6 +10,7 @@ namespace ROAutomationToolkit.Forms
     partial class MainForm
     {
         private IContainer components = null;
+        private ToolTip _toolTip;
         private Label labelRagexeWindowSelector;
         private ComboBox comboBoxRagexeWindows;
         private Button buttonRagexeWindowsRefresh;
@@ -20,6 +21,11 @@ namespace ROAutomationToolkit.Forms
         private TextBox textBoxKeySelection;
         private ListBox listBoxLog;
         private Label labelListBoxLog;
+        private ComboBox comboBoxProfiles;
+        private Label labelProfiles;
+        private TextBox textBoxProfileName;
+        private Button buttonSaveProfile;
+        private Button buttonDeleteProfile;
 
         protected override void Dispose(bool disposing)
         {
@@ -32,6 +38,7 @@ namespace ROAutomationToolkit.Forms
 
         private void InitializeComponent()
         {
+            this._toolTip = new ToolTip();
             this.labelRagexeWindowSelector = new Label();
             this.comboBoxRagexeWindows = new ComboBox();
             this.buttonRagexeWindowsRefresh = new Button();
@@ -42,7 +49,19 @@ namespace ROAutomationToolkit.Forms
             this.textBoxKeySelection = new TextBox();
             this.listBoxLog = new ListBox();
             this.labelListBoxLog = new Label();
+            this.comboBoxProfiles = new ComboBox();
+            this.labelProfiles = new Label();
+            this.textBoxProfileName = new TextBox();
+            this.buttonSaveProfile = new Button();
+            this.buttonDeleteProfile = new Button();
             this.SuspendLayout();
+
+            // ===========================================
+            // ToolTip Configuration
+            // ===========================================
+            this._toolTip.SetToolTip(buttonSaveProfile, "Salvar perfil atual");
+            this._toolTip.SetToolTip(buttonDeleteProfile, "Excluir perfil selecionado");
+            this._toolTip.SetToolTip(buttonRagexeWindowsRefresh, "Atualizar lista de ragexe.exe");
             // ===========================================
             // RagexeWindowSelector Label
             // ===========================================
@@ -112,6 +131,7 @@ namespace ROAutomationToolkit.Forms
             this.textBoxInterval.Name = "textBoxInterval";
             this.textBoxInterval.Size = new Size(91, 22);
             this.textBoxInterval.TabIndex = 5;
+            this.textBoxInterval.PlaceholderText = "ms (min: 100)";
             this.textBoxInterval.Text = "2000";
             // ===========================================
             // buttonToggleKeySending Button
@@ -125,10 +145,66 @@ namespace ROAutomationToolkit.Forms
             this.buttonToggleKeySending.UseVisualStyleBackColor = false;
             this.buttonToggleKeySending.Click += new EventHandler(this.OnbuttonToggleKeySending);
             // ===========================================
+            // labelProfiles
+            // ===========================================
+            this.labelProfiles.AutoSize = true;
+            this.labelProfiles.Location = new Point(12, 120);
+            this.labelProfiles.Name = "labelProfiles";
+            this.labelProfiles.Size = new Size(51, 16);
+            this.labelProfiles.TabIndex = 13;
+            this.labelProfiles.Text = "Perfis:";
+            // ===========================================
+            // comboBoxProfiles
+            // ===========================================
+            this.comboBoxProfiles.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.comboBoxProfiles.FormattingEnabled = true;
+            this.comboBoxProfiles.Location = new Point(12, 139);
+            this.comboBoxProfiles.Name = "comboBoxProfiles";
+            this.comboBoxProfiles.Size = new Size(172, 24);
+            this.comboBoxProfiles.TabIndex = 12;
+            this.comboBoxProfiles.SelectedIndexChanged += new EventHandler(this.ComboBoxProfiles_SelectedIndexChanged);
+            // ===========================================
+            // textBoxProfileName
+            // ===========================================
+            this.textBoxProfileName.Location = new Point(190, 139);
+            this.textBoxProfileName.Name = "textBoxProfileName";
+            this.textBoxProfileName.Size = new Size(100, 22);
+            this.textBoxProfileName.TabIndex = 14;
+            this.textBoxProfileName.PlaceholderText = "Nome do perfil";
+            this.textBoxProfileName.Text = "Novo Perfil";
+            // ===========================================
+            // buttonSaveProfile
+            // ===========================================
+            this.buttonSaveProfile.Location = new Point(296, 138);
+            this.buttonSaveProfile.Name = "buttonSaveProfile";
+            this.buttonSaveProfile.Size = new Size(34, 28);
+            this.buttonSaveProfile.TabIndex = 15;
+            this.buttonSaveProfile.UseVisualStyleBackColor = true;
+            this.buttonSaveProfile.Click += new EventHandler(this.ButtonSaveProfile_Click);
+            string imagePathSaveProfile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "diskette.png");
+            this.buttonSaveProfile.Image = Image.FromFile(imagePathSaveProfile);
+            this.buttonSaveProfile.ImageAlign = ContentAlignment.MiddleCenter;
+            this.buttonSaveProfile.FlatAppearance.BorderSize = 0;
+            this.buttonSaveProfile.Cursor = Cursors.Hand;
+            // ===========================================
+            // buttonDeleteProfile
+            // ===========================================
+            this.buttonDeleteProfile.Location = new Point(333, 138);
+            this.buttonDeleteProfile.Name = "buttonDeleteProfile";
+            this.buttonDeleteProfile.Size = new Size(34, 28);
+            this.buttonDeleteProfile.TabIndex = 16;
+            this.buttonDeleteProfile.UseVisualStyleBackColor = true;
+            this.buttonDeleteProfile.Click += new EventHandler(this.ButtonDeleteProfile_Click);
+            string imagePathDeleteProfile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "garbage.png");
+            this.buttonDeleteProfile.Image = Image.FromFile(imagePathDeleteProfile);
+            this.buttonDeleteProfile.ImageAlign = ContentAlignment.MiddleCenter;
+            this.buttonDeleteProfile.FlatAppearance.BorderSize = 0;
+            this.buttonDeleteProfile.Cursor = Cursors.Hand;
+            // ===========================================
             // labelListBoxLog
             // ===========================================
             this.labelListBoxLog.AutoSize = true;
-            this.labelListBoxLog.Location = new Point(12, 120);
+            this.labelListBoxLog.Location = new Point(12, 170);
             this.labelListBoxLog.Name = "labelListBoxLog";
             this.labelListBoxLog.Size = new Size(36, 16);
             this.labelListBoxLog.TabIndex = 11;
@@ -138,9 +214,9 @@ namespace ROAutomationToolkit.Forms
             // ===========================================
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.ItemHeight = 16;
-            this.listBoxLog.Location = new Point(12, 139);
+            this.listBoxLog.Location = new Point(12, 189);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new Size(353, 156);
+            this.listBoxLog.Size = new Size(353, 106);
             this.listBoxLog.TabIndex = 10;
             // ===========================================
             // MainForm
@@ -158,12 +234,17 @@ namespace ROAutomationToolkit.Forms
             this.Controls.Add(this.textBoxInterval);
             this.Controls.Add(this.labelInterval);
             this.Controls.Add(this.labeltextBoxKeySelection);
+            this.Controls.Add(this.buttonDeleteProfile);
+            this.Controls.Add(this.buttonSaveProfile);
+            this.Controls.Add(this.textBoxProfileName);
+            this.Controls.Add(this.labelProfiles);
+            this.Controls.Add(this.comboBoxProfiles);
             this.Font = new Font("Segoe UI", 9F);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "RO Automation Toolkit v1.2.0";
+            this.Text = "RO Automation Toolkit v1.3.0";
             this.ResumeLayout(false);
             this.PerformLayout();
         }
