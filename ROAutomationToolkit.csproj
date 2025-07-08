@@ -7,10 +7,12 @@
     <ApplicationIcon>resources\icon.ico</ApplicationIcon>
     <AssemblyName>RO Automation Toolkit</AssemblyName>
     <Version>1.3.0</Version>
+    <FileVersion>1.3.0.0</FileVersion>
+    <AssemblyVersion>1.3.0.0</AssemblyVersion>
     <Company>Bad</Company>
     <Product>RO Automation Toolkit</Product>
-    <Copyright>© 2025 Bad</Copyright>
-    <Description>RO Automation Toolkit</Description>
+    <Copyright>Copyright © Bad 2025</Copyright>
+    <Description>Ferramenta de automação para Ragnarok Online</Description>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <PublishTrimmed>false</PublishTrimmed>
     <PublishReadyToRun>true</PublishReadyToRun>
